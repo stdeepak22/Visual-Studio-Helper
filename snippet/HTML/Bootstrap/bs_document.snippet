@@ -1,0 +1,42 @@
+﻿<CodeSnippet Format="1.0.0" xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+
+  <Header>
+  	<Title>bootstrap document</Title>
+  	<Author>stdeepak22@gmail.com</Author>
+  	<Shortcut>bs_document</Shortcut>
+  	<Description>Code snippet to create bootstrap document</Description>
+  	<SnippetTypes>
+	  <SnippetType>Expansion</SnippetType>
+  	  <SnippetType>SurroundsWith</SnippetType>
+  	</SnippetTypes>
+  </Header>
+  <Snippet>
+  	<Declarations>
+	  <Literal>
+	  	<ID>pageTitle</ID>
+	  	<ToolTip>Page title.</ToolTip>
+	  	<Default>Welcome Guest</Default>
+	  </Literal>	
+  	</Declarations>
+  	<!--Possible languages are -> html, css, csharp, VB, cpp, XML, XAML, and others -->
+  	<Code Language="html"><![CDATA[<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatibl" content="IE=edge" >
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>$pageTitle$</title>
+        <link rel="stylesheet" href="content/bootstrap.min.css">
+        <link rel="stylesheet" href="content/bootstrap-theme.min.css">
+    </head>
+    <body>
+        <div class="container">
+			$selected$$end$
+        </div>
+        <script src="script/bootstrap.min.js"></script>
+    </body>
+</html>
+  	]]>
+  	</Code>
+  </Snippet>
+</CodeSnippet>
