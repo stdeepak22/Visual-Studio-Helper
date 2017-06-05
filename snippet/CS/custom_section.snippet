@@ -1,0 +1,67 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CodeSnippet Format="1.0.0" xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+  <Header>
+    <Title>Custom configuration section</Title>
+    <Author>stdeepak22@gmail.com</Author>
+    <Shortcut>custom_section</Shortcut>
+    <Description>to create custom configuration section </Description>
+    <SnippetTypes>
+      <SnippetType>SurroundsWith</SnippetType>
+      <SnippetType>Expansion</SnippetType>
+    </SnippetTypes>
+  </Header>
+  <Snippet>
+    <Declarations>
+      <Literal>
+        <ID>SectionName</ID>
+        <Default>SectionName</Default>
+      </Literal>
+      <Literal>
+        <ID>ElementName</ID>
+        <Default>ElementName</Default>
+      </Literal>
+      <Literal>
+        <ID>PropertyName</ID>
+        <Default>property</Default>        
+      </Literal>
+    </Declarations>
+    <Code Language="csharp">
+      <![CDATA[ public class $SectionName$ : ConfigurationSection
+    {
+
+        [ConfigurationProperty("name")]
+        public string Name
+        {
+            get { return (string)this["name"]; }
+            set { this["name"] = value; }
+        }
+        
+        [ConfigurationProperty("$PropertyName$")]
+        public $ElementName$ $ElementName$
+        {
+            get { return ($ElementName$)this["$PropertyName$"]; }
+            set { this["$PropertyName$"] = value; }
+        }
+        $end$
+    }
+    
+    public class $ElementName$ : ConfigurationElement
+    {
+        // add remove IsKey, IsRequired an others as per the requirement
+        [ConfigurationProperty("id", IsKey = true, IsRequired = true)]
+        public string Id
+        {
+            get { return (string)this["id"]; }
+            set { this["id"] = value; }
+        }
+
+        [ConfigurationProperty("name", IsRequired = true)]
+        public string Name
+        {
+            get { return (string)this["name"]; }
+            set { this["name"] = value; }
+        }
+    }]]>
+    </Code>
+  </Snippet>
+</CodeSnippet>

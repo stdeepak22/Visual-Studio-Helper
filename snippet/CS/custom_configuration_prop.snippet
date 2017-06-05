@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CodeSnippet Format="1.0.0" xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+  <Header>
+    <Title>Custom configuration Property</Title>
+    <Author>stdeepak22@gmail.com</Author>
+    <Shortcut>custom_configuration_prop</Shortcut>
+    <Description>to create custom configuration property </Description>
+    <SnippetTypes>
+      <SnippetType>SurroundsWith</SnippetType>
+      <SnippetType>Expansion</SnippetType>
+    </SnippetTypes>
+  </Header>
+  <Snippet>
+    <Declarations>
+      <Literal>
+        <ID>PropertyReturnType</ID>
+        <Default>string</Default>
+      </Literal>
+      <Literal>
+        <ID>PropertyCSName</ID>
+        <Default>Property</Default>
+      </Literal>
+      <Literal>
+        <ID>PropertyXMLName</ID>
+        <Default>property</Default>
+      </Literal>
+    </Declarations>
+    <Code Language="csharp">
+      <![CDATA[[ConfigurationProperty("$PropertyXMLName$")]
+        public $PropertyReturnType$ $PropertyCSName$
+        {
+            get { return ($PropertyReturnType$)this["$PropertyXMLName$"]; }
+            set { this["$PropertyXMLName$"] = value; }
+        }$end$]]>
+    </Code>
+  </Snippet>
+</CodeSnippet>

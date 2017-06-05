@@ -1,0 +1,80 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CodeSnippet Format="1.0.0" xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+  <Header>
+    <Title>Custom configuration element collection</Title>
+    <Author>stdeepak22@gmail.com</Author>
+    <Shortcut>custom_element_collection</Shortcut>
+    <Description>to create custom_element_collection</Description>
+    <SnippetTypes>
+      <SnippetType>SurroundsWith</SnippetType>
+      <SnippetType>Expansion</SnippetType>
+    </SnippetTypes>
+  </Header>
+  <Snippet>
+    <Declarations>
+      <Literal>
+        <ID>CollectionName</ID>
+        <Default>CollectionName</Default>
+      </Literal>
+      <Literal>
+        <ID>ElementName</ID>
+        <Default>ElementName</Default>
+      </Literal>
+    </Declarations>
+    <Code Language="csharp">
+      <![CDATA[[ConfigurationCollection(typeof($ElementName$), AddItemName = "add", ClearItemsName = "clear")]
+    public class $CollectionName$ : ConfigurationElementCollection
+    {
+        protected override ConfigurationElement CreateNewElement()
+        {
+            return new $ElementName$();
+        }
+
+        protected override object GetElementKey(ConfigurationElement element)
+        {
+            //return Guid.NewGuid();  // if no id for $ElementName$
+            return (($ElementName$)element).Id;
+        }
+
+        public void Add($ElementName$ table)
+        {
+            BaseAdd(table);
+        }
+        public void Clear()
+        {
+            BaseClear();
+        }
+
+        public List<$ElementName$> GetList()
+        {
+            return BaseGetAllKeys().Select(key => ($ElementName$)BaseGet(key)).ToList();
+        }
+        new public $ElementName$ this[string serviceName]
+        {
+            get
+            {
+                return ($ElementName$)BaseGet(serviceName);
+            }
+        }
+    }
+    
+    public class $ElementName$ : ConfigurationElement
+    {
+        [ConfigurationProperty("id", IsKey = true, IsRequired = true)]
+        public string Id
+        {
+            get { return (string)this["id"]; }
+            set { this["id"] = value; }
+        }
+
+        [ConfigurationProperty("name", IsRequired = true)]
+        public string Name
+        {
+            get { return (string)this["name"]; }
+            set { this["name"] = value; }
+        }
+        $end$
+    }]]>
+    </Code>
+  </Snippet>
+</CodeSnippet>

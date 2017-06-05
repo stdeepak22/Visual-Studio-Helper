@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CodeSnippet Format="1.0.0" xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+  <Header>
+    <Title>Custom configuration element</Title>
+    <Author>stdeepak22@gmail.com</Author>
+    <Shortcut>custom_element</Shortcut>
+    <Description>to create custom element </Description>
+    <SnippetTypes>
+      <SnippetType>SurroundsWith</SnippetType>
+      <SnippetType>Expansion</SnippetType>
+    </SnippetTypes>
+  </Header>
+  <Snippet>
+    <Declarations>
+      <Literal>
+        <ID>ElementName</ID>
+        <Default>ElementName</Default>
+      </Literal>
+    </Declarations>
+    <Code Language="csharp">
+      <![CDATA[public class $ElementName$ : ConfigurationElement
+    {
+        // add remove IsKey, IsRequired an others as per the requirement
+        [ConfigurationProperty("id", IsKey = true, IsRequired = true)]
+        public string Id
+        {
+            get { return (string)this["id"]; }
+            set { this["id"] = value; }
+        }
+
+        [ConfigurationProperty("name", IsRequired = true)]
+        public string Name
+        {
+            get { return (string)this["name"]; }
+            set { this["name"] = value; }
+        }
+    }$end$]]>
+    </Code>
+  </Snippet>
+</CodeSnippet>
